@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService{
 		
 		//查看切面方法的执行时机
 		System.out.println("login()");
+		System.out.println(password);
 		//先判断传入的参数是否为空，防止空指针异常 这里password==null||password.trim().isEmpty()不能颠倒
 		//因为如果password==null的时候呢，password.trim()会出现空指针异常
 		if(password==null||password.trim().isEmpty()) {
@@ -49,6 +50,9 @@ public class UserServiceImpl implements UserService{
 		}
 		//密码加密 比对摘要即可 加盐是增加混淆范围，增大安全性
 		String pwd = DigestUtils.md5Hex(salt+password.trim());
+		
+		System.out.println(pwd);
+		System.out.println(user.getPassword());
 		if(!pwd.equals(user.getPassword())) {
 			throw new PassWordException("密码错误");
 		}
