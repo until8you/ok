@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tedu.note.dao.NoteBookDao;
 import com.tedu.note.dao.UserDao;
@@ -18,7 +18,7 @@ import com.tedu.note.entity.NoteBook;
 import com.tedu.note.entity.User;
 
 @Service("noteBookService")
-//@Transactional //类上添加，类中的方法都会被事务管理
+@Transactional //类上添加，类中的方法都会被事务管理
 public class NoteBookServiceImpl implements NoteBookService{
 
 	@Resource

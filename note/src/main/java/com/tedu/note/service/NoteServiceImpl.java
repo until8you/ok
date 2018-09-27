@@ -7,7 +7,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tedu.note.dao.NoteBookDao;
 import com.tedu.note.dao.NoteDao;
@@ -18,7 +18,7 @@ import com.tedu.note.entity.Stars;
 import com.tedu.note.entity.User;
 
 @Service("noteService")
-//@Transactional //类上添加，类中的方法都会被事务管理
+@Transactional //类上添加，类中的方法都会被事务管理
 public class NoteServiceImpl implements NoteService{
 
 	@Resource
@@ -54,7 +54,7 @@ public class NoteServiceImpl implements NoteService{
 		return note;
 	}
 	//添加笔记业务
-	//@Transactional
+	@Transactional
 	public Note addNote(String title, String notebookId, String userId) throws TitleIsNullException,NotebookIdNotFindException,UserIdNotFoundException{
 		//判断传来的参数
 		if(notebookId==null||notebookId.trim().isEmpty()) {
@@ -202,7 +202,7 @@ public class NoteServiceImpl implements NoteService{
 	}
 
 	//用于测试批量删除的事务 String...相当于String[]  String...调用时比较省事  ...变长参数
-	//@Transactional
+	@Transactional
 	public int deleteNotes(String... noteIds) throws NoteIdNotFoundException {
 //		for (String id : noteIds) {
 //			int n = noteDao.deleteNote(id);

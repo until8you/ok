@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tedu.note.dao.UserDao;
 import com.tedu.note.entity.User;
@@ -15,7 +15,7 @@ import com.tedu.note.entity.User;
  * 一般以接口名首字母小写为id
  */
 @Service("userService")
-//@Transactional //类上添加，类中的方法都会被事务管理
+@Transactional //类上添加，类中的方法都会被事务管理
 public class UserServiceImpl implements UserService{
 	//将值注入，jdbc.properties中读取
 	@Value("#{db.salt}")
