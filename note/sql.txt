@@ -1,0 +1,16 @@
+create table p_person(
+	id int not null AUTO_INCREMENT,
+	name varchar(100),
+	primary key(id)
+);
+
+insert into p_person (name) values ('李老师');
+insert into p_person (id,name) values (null,'李老师');
+select * from p_person;
+
+create table p_comment(
+	id int not null AUTO_INCREMENT,
+	name varchar(100),
+	post_id int,
+	primary key(id)
+);

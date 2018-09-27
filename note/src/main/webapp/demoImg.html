@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>自定义图片</h1>
+	<p>
+		<!-- src 其实就是get请求  -->
+		servlet 处理自定义图片
+		<img alt="" src="demoimg">
+	</p>
+	
+	<p>
+		<!-- src 其实就是get请求  -->
+		spring mvc 处理自定义图片
+		<img alt="" src="user/image.do">
+	</p>
+	
+	<p>
+	图片下载
+	<a href="user/downloading.do">下载</a>
+	</p>
+	<p>
+	Excel下载
+	<a href="user/excel.do">Excel 下载</a>
+	</p>
+	
+	<!-- 上传文件 -->
+	 <FORM ENCTYPE="multipart/form-data" ACTION="user/upload.do" METHOD=POST>
+   		 File to process: <br>
+   		 <INPUT NAME="userfile1" TYPE="file"><br>
+   		 <INPUT NAME="userfile2" TYPE="file"><br>
+   		 <INPUT TYPE="submit" VALUE="Send File">
+    </FORM>
+</body>
+</html>

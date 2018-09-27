@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 与接口的完整名 -->
+<mapper namespace="com.tedu.note.dao.NoteBookDao">
+	<!-- 这里返回map时，查询的数据，存到map中的形式时Map{id:1,name:1} 
+		一个map表示一条记录，key是列名，value是对应的值
+	-->
+	<select id="findNoteBooksByUesrId" parameterType="String" resultType="map">
+		select
+			cn_notebook_id as id,
+			cn_notebook_name as name
+		from
+			cn_notebook
+		where
+			cn_user_id = #{userId}
+		order by
+			cn_notebook_createtime desc
+	</select>
+	
+	<!-- 根据notebookId来查询，返还记录数 -->
+	<select id="countNotebookById" parameterType="String" resultType="int">
+		select
+			count(*)
+		from
+			cn_notebook
+		where
+			cn_notebook_id = #{notebookId}
+	</select>
+	
+	<!-- 根据noteBook来插入一个笔记本 -->
+	<insert id="addNoteBook" parameterType="com.tedu.note.entity.NoteBook">
+		insert into 
+			cn_notebook 
+			(cn_notebook_id,
+			cn_user_id,
+			cn_notebook_type_id,
+			cn_notebook_name,
+			cn_notebook_desc,
+			cn_notebook_createTime
+			) 
+		values (
+			#{noteBookId},
+			#{userId},
+			#{typeId},
+			#{name},
+			#{desc},
+			#{createTime}
+		)
+	</insert>
+	<!-- ${} 用于关键字，表明，字段的更换实现多表查询 #{} 仅限于参数的拼接 -->
+	<select id="findNoteBooksByPage" resultType="map">
+		select 
+			cn_notebook_id as id,
+			cn_notebook_name as name 
+		from 
+			${table} 
+		where 
+			cn_user_id = #{userId} 
+		order by 
+			cn_notebook_createtime desc 
+		limit 
+			#{start},#{pageSize}
+	</select>
+</mapper>
+
+
+
+
+
+
+
